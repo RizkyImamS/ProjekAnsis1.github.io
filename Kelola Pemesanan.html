@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Riwayat Transaksi</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url('Ice Tea.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.3);
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            background-color: #333;
+            /* Dark grey */
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 1em;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        .transaction-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .transaction-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 15px;
+            background-color: #fff;
+        }
+
+        .transaction-item span {
+            flex-grow: 1;
+        }
+
+        .transaction-actions {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        .transaction-actions button {
+            padding: 10px;
+            background-color: #333;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+
+        .transaction-details {
+            display: none;
+            margin-top: 20px;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: #fff;
+        }
+
+        .transaction-details h3 {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 10px;
+        }
+
+        .transaction-details ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .transaction-details li {
+            margin-bottom: 10px;
+        }
+
+        .close-button {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+            margin-top: 10px;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .options {
+                padding: 10px;
+            }
+
+            a {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Riwayat Transaksi</h1>
+        <nav>
+            <ul>
+                <li><a href="Kelola Menu.html">Kelola Menu</a></li>
+                <li><a href="Kelola Pemesanan.html">History Transaksi</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <div class="container">
+        <h2>Daftar Transaksi</h2>
+        <ul class="transaction-list" id="transactionList">
+            <!-- Transaction items will be displayed here -->
+        </ul>
+
+
+        <div class="transaction-details" id="transactionDetails">
+            <h3>Detail Pemesanan</h3>
+            <ul id="detailsList">
+                <!-- Transaction details will be displayed here -->
+            </ul>
+            <button class="close-button" onclick="closeDetails()">Tutup Detail</button>
+        </div>
+
+        <button onclick="printReport()" class="print-button">Cetak Laporan</button>
+
+
+        <script>
+            // Sample transaction history data
+            let transactionHistory = [
+                { id: 1, date: "2023-01-01", total: 18000, details: { menu: "Teh Blackurrant", quantity: 2 } },
+                { id: 2, date: "2023-01-02", total: 10000, details: { menu: "Teh Coklat", quantity: 1 } },
+                { id: 3, date: "2023-01-03", total: 21000, details: { menu: "Teh Jasmine", quantity: 3 } },
+                // Add more transaction items as needed
+            ];
+
+            // Function to render transaction items
+            function renderTransactionItems() {
+                const transactionList = document.getElementById("transactionList");
+                transactionList.innerHTML = "";
+
+                transactionHistory.forEach(transaction => {
+                    const listItem = document.createElement("li");
+                    listItem.className = "transaction-item";
+                    listItem.innerHTML = `
+                    <span>Tanggal: ${transaction.date} - Total: Rp ${transaction.total}</span>
+                    <button onclick="viewDetails(${transaction.id})">Lihat Detail</button>
+                `;
+                    transactionList.appendChild(listItem);
+                });
+            }
+
+            // Function to view transaction details
+            function viewDetails(transactionId) {
+                const detailsContainer = document.getElementById("transactionDetails");
+                const detailsList = document.getElementById("detailsList");
+
+                const transaction = transactionHistory.find(transaction => transaction.id === transactionId);
+
+                if (transaction) {
+                    detailsList.innerHTML = `
+                <li><strong>Tanggal Pemesanan:</strong> ${transaction.date}</li>
+                <li><strong>Menu:</strong> ${transaction.details.menu}</li>
+                <li><strong>Jumlah:</strong> ${transaction.details.quantity}</li>
+                <li><strong>Total Harga:</strong> Rp ${transaction.total}</li>
+            `;
+                    detailsContainer.style.display = "block";
+                }
+            }
+
+            // Function to close transaction details
+            function closeDetails() {
+                const detailsContainer = document.getElementById("transactionDetails");
+                detailsContainer.style.display = "none";
+            }
+
+            function printReport() {
+                const detailsContainer = document.getElementById("transactionDetails");
+                const detailsList = document.getElementById("detailsList");
+
+                // Check if transaction details are already visible
+                if (detailsContainer.style.display === "block") {
+                    // You can customize the print logic here, for now, let's just open the print dialog
+                    window.print();
+                } else {
+                    alert("Pilih transaksi untuk dilihat detailnya terlebih dahulu.");
+                }
+
+            }
+
+            // Initial rendering
+            renderTransactionItems();
+        </script>
+</body>
+
+</html>

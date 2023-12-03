@@ -1,0 +1,125 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('Ice\ Tea.jpg'); /* Ganti 'background.jpg' dengan gambar latar belakang yang Anda inginkan */
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-attachment: fixed; /* Menetapkan gambar latar belakang agar mengikuti scrolling */
+}
+
+header {
+    background-color: rgba(51, 51, 51, 0.7); /* Warna latar belakang dengan opasitas (RGBA) untuk transparansi */
+    color: white;
+    padding: 20px 0;
+    text-align: center;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+}
+
+nav li {
+    display: inline;
+    margin-right: 20px;
+}
+
+nav a {
+    text-decoration: none;
+    color: white;
+}
+
+.menu {
+    max-width: 1200px;
+    margin: 20px auto;
+    display: flex;
+    flex-wrap: wrap; /* Mungkin akan wrapping saat layar lebih sempit */
+    justify-content: space-between; /* Menjadikan menu sejajar dan menjaga jarak antara item */
+}
+
+.menu-item {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 10px;
+    text-align: center;
+    width: 200px;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    margin: 10px;
+}
+
+.menu-item img {
+    max-width: 100%;
+    height: auto;
+}
+
+.menu-item h3 {
+    font-size: 18px;
+    margin: 10px 0;
+}
+
+.menu-item p {
+    font-size: 14px;
+}
+
+.menu-item .price {
+    font-weight: bold;
+    color: #d33;
+}
+
+.menu-item button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    transform: scale(1.05);
+}
+
+.menu-item img:hover {
+    transform: scale(1.1);
+}
+
+.menu-item button:hover {
+    background-color: #555;
+}
+
+/* Media Query untuk mengubah tampilan saat layar lebih sempit */
+@media (max-width: 768px) {
+    .menu {
+        flex-direction: column; /* Mengatur menu agar vertikal saat layar sempit */
+        align-items: center; /* Menengahkan item saat layar sempit */
+    }
+    .menu-item {
+        width: 100%; /* Menjadikan item menu penuh lebar saat layar sempit */
+    }
+}
+
+
+.price {
+    font-weight: bold;
+    color: #d33;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+footer {
+    text-align: center;
+    background-color: rgba(51, 51, 51, 0.7); /* Warna latar belakang dengan opasitas (RGBA) untuk transparansi */
+    color: white;
+    padding: 10px 0;
+}

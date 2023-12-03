@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teh Solo - Pemesanan Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.3);
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            background-color: #333;
+            /* Dark grey */
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 1em;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .main-content {
+            padding: 20px;
+            transition: margin-left 0.5s ease-in-out;
+            background-color: rgba(255, 255, 255, 0.3); /* Warna latar belakang */
+            border-radius: 8px; /* Sudut elemen */
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Bayangan lembut */
+        }
+
+        .main-content.collapsed {
+            margin-left: 60px;
+        }
+
+        .welcome-screen {
+            text-align: center;
+            padding: 50px;
+        }
+
+        .welcome-screen input {
+            padding: 10px;
+            margin: 10px;
+        }
+
+        .welcome-screen button {
+            padding: 10px 20px;
+            background-color: #4caf50;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .welcome-screen button:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .options {
+                padding: 10px;
+            }
+
+            a {
+                padding: 10px 20px;
+            }
+        }
+
+
+        /* ... Kode CSS lainnya ... */
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Teh Solo</h1>
+    </header>
+
+    <div class="main-content welcome-screen">
+        <h2>Selamat Datang di Teh Solo!</h2>
+        <p>Masukkan nama Anda untuk melanjutkan.</p>
+        <input type="text" id="customerName" placeholder="Nama Pembeli">
+        <button onclick="showNextPage()">Lanjutkan</button>
+    </div>
+
+    <script>
+        function showNextPage() {
+            const customerName = document.getElementById('customerName').value;
+            if (customerName.trim() !== "") {
+                // Navigasi ke halaman selanjutnya atau lakukan tindakan yang sesuai
+                alert(`Selamat datang, ${customerName}!`);
+                // Contoh: Pindah ke halaman berikutnya
+                window.location.href = "Pemesanan Pelanggan.html";
+            } else {
+                alert("Mohon masukkan nama Anda!");
+            }
+        }
+    </script>
+</body>
+
+</html>

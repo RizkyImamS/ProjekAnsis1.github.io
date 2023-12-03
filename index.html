@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pilih Opsi - Teh Solo</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            background-image: url('Ice Tea.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .options {
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            transition: transform 0.3s;
+            max-width: 600px;
+            width: 100%;
+        }
+
+        .options:hover {
+            transform: scale(1.05);
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        p {
+            color: #555;
+        }
+
+        a {
+            display: inline-block;
+            margin: 10px 0;
+            padding: 15px 30px;
+            background-color: #4CAF50;
+            color: white;
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, transform 0.3s;
+            font-size: 18px;
+        }
+
+        a:hover {
+            background-color: #45a049;
+        }
+
+        @media only screen and (max-width: 600px) {
+            .options {
+                padding: 10px;
+            }
+
+            a {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="options">
+        <h1>Selamat Datang di Teh Solo</h1>
+        <p>Silakan pilih opsi yang diinginkan:</p>
+        <p>Untuk Admin</p>
+        <a href="Login.html">Login</a><br><br>
+        <p>Untuk Pembeli</p>
+        <a href="Welcome.html">Pesan Sekarang</a>
+    </div>
+</body>
+</html>

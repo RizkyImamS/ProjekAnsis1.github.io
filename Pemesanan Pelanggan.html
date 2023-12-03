@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teh Solo - Pemesanan Online</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        header {
+            background-color: rgba(51, 51, 51, 0.3);
+            color: white;
+            text-align: center;
+            padding: 1em 0;
+            position: relative;
+        }
+
+        h1 {
+            margin: 0;
+        }
+
+        nav {
+            position: absolute;
+            top: 50%;
+            right: 0;
+            transform: translateY(-50%);
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+            display: flex;
+            background-color: #333;
+            /* Dark grey */
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 0;
+        }
+
+        nav ul li {
+            padding: 1em;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 2em;
+        }
+
+        .menu-item {
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .menu-item img {
+            width: 100%;
+            height: auto;
+            border-bottom: 1px solid #ddd;
+        }
+
+        .menu-item h3,
+        .menu-item p,
+        .menu-item .price,
+        .menu-item button {
+            margin: 10px;
+        }
+
+        .menu-item button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .menu-item button:hover {
+            background-color: #45a049;
+        }
+
+        .order-summary,
+        .payment,
+        .total-amount {
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        .order-summary h2,
+        .payment h2,
+        .total-amount h2 {
+            color: white;
+        }
+
+        .order-summary ul {
+            list-style: none;
+            color: white;
+            padding: 0;
+        }
+
+        .order-summary li {
+            margin-bottom: 10px;
+        }
+
+        .total-amount p {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: white;
+        }
+
+        .payment form {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+        }
+
+        .payment label {
+            margin-right: 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .payment label img {
+            width: 100px;
+            margin-right: 5px;
+        }
+
+        .payment-actions {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .payment-actions button {
+            background-color: #4caf50;
+            color: #fff;
+            padding: 10px 20px;
+            font-size: 1em;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-bottom: 50px;
+        }
+
+        .payment-actions button:hover {
+            background-color: #45a049;
+        }
+
+        .footer-logo {
+            background-color: rgba(51, 51, 51, 0.1);
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        .footer-logo img {
+            background-color: rgba(51, 51, 51, 0.1);
+            width: 50px;
+            height: 50px;
+            margin: 0 10px;
+            transition: transform 0.3s;
+        }
+
+        .footer-logo img:hover {
+            transform: scale(1.2);
+        }
+
+        @media only screen and (max-width: 600px) {
+            .options {
+                padding: 10px;
+            }
+
+            a {
+                padding: 10px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Teh Solo</h1>
+        <nav>
+            <ul>
+                <li><a href="index.html">Menu</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="menu">
+        <div class="menu-item">
+            <img src="Teh manis.jpg" alt="Teh manis">
+            <h3>Teh Manis</h3>
+            <p>Rasakan kesegaran teh manis segar.</p>
+            <p class="price">Rp 4.0000</p>
+            <li id="item1">Teh Manis - Rp 4.000 <button onclick="addToOrder('item1')">Tambah</button>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh kampoel.jpg" alt="Teh kampoel">
+            <h3>Teh kampoel</h3>
+            <p>Rasakan kesegaran teh kampoel.</p>
+            <p class="price">Rp 6.000</p>
+            <li id="item2">Teh kampoel - Rp 6.000 <button onclick="addToOrder('item2')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh tarik.jpg" alt="Teh Tarik">
+            <h3>Teh Tarik</h3>
+            <p>Nikmati teh tarik lezat kami.</p>
+            <p class="price">Rp 8.000</p>
+            <li id="item3">Teh kampoel - Rp 8.000 <button onclick="addToOrder('item3')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh susu.jpg" alt="Teh Susu">
+            <h3>Teh Susu</h3>
+            <p>Rasakan aroma teh susu yang sangat lezat.</p>
+            <p class="price">Rp 7.000</p>
+            <li id="item4">Teh Susu - Rp 7.000 <button onclick="addToOrder('item4')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh Milo.jpg" alt="Teh Milo">
+            <h3>Teh Milo</h3>
+            <p>Nikmati teh milo kita.</p>
+            <p class="price">Rp 9.000</p>
+            <li id="item5">Teh Milo - Rp 9.000 <button onclick="addToOrder('item5')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh coklat.jpg" alt="Teh coklat">
+            <h3>Teh Coklat</h3>
+            <p>Rasakan kebaikan teh coklat.</p>
+            <p class="price">Rp 10.000</p>
+            <li id="item6">Teh coklat - Rp 10.000 <button onclick="addToOrder('item6')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh blackurrant.jpg" alt="Teh Jahe">
+            <h3>Teh blackurrant</h3>
+            <p>Nikmati teh blackurrant kami.</p>
+            <p class="price">Rp 9.000</p>
+            <li id="item7">Teh blackurrant - Rp 9.000 <button onclick="addToOrder('item7')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh Macha.jpg" alt="Teh Matcha">
+            <h3>Teh Matcha</h3>
+            <p>Rasakan teh Matcha istimewa.</p>
+            <p class="price">Rp 12.000</p>
+            <li id="item8">Teh Matcha - Rp 12.000 <button onclick="addToOrder('item8')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh Jasmine.jpg" alt="Teh Jasmine">
+            <h3>Teh Jasmine</h3>
+            <p>Nikmati teh Jasmine yang lezat.</p>
+            <p class="price">Rp 7.000</p>
+            <li id="item9">Teh Jasmine - Rp 7.000 <button onclick="addToOrder('item9')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh Lemon.jpg" alt="Teh Lemon">
+            <h3>Teh Lemon</h3>
+            <p>Rasakan kesegaran teh lemon segar.</p>
+            <p class="price">Rp 8.000</p>
+            <li id="item10">Teh Lemon - Rp 8.000 <button onclick="addToOrder('item10')">Tambah</button></li>
+        </div>
+
+        <div class="menu-item">
+            <img src="Teh leci.jpg" alt="Teh Leci">
+            <h3>Teh Leci</h3>
+            <p>Rasakan kesegaran teh Leci segar.</p>
+            <p class="price">Rp 8.000</p>
+            <li id="item11">Teh Leci - Rp 8.000 <button onclick="addToOrder('item11')">Tambah</button></li>
+        </div>
+
+        <!-- Tambahkan item-menu lainnya di sini -->
+    </section>
+
+    <section class="order-summary">
+        <h2>Ringkasan Pemesanan</h2>
+        <ul id="orderList"></ul>
+    </section>
+
+    <section class="payment">
+        <h2>Metode Pembayaran</h2>
+        <form>
+            <label><input type="radio" name="payment" value="dana"><img src="Logo DANA (PNG-2160p) - FileVector69.png"
+                    alt="Dana"></label>
+            <label><input type="radio" name="payment" value="gopay"><img src="Logo GoPay (PNG-2160p) - FileVector69.png"
+                    alt="Gopay"></label>
+            <label><input type="radio" name="payment" value="ovo"><img src="logo-ovo.png" alt="Ovo"></label>
+        </form>
+    </section>
+
+    <section class="total-amount">
+        <h2>Total Pembayaran</h2>
+        <p>Total yang harus dibayar: Rp <span id="total">0</span></p>
+    </section>
+
+    <section class="payment-actions">
+        <button onclick="processPayment()">Bayar</button>
+        <button onclick="cancelOrder()">Batal Pesanan</button>
+    </section>
+
+    <footer>
+        <a>CONTACT US :</a>
+        <div class="footer-logo">
+            <a href="https://www.instagram.com/estehsolo_mataram/" target="_blank">
+                <img src="logo-ig-png-32464.png" alt="Instagram Logo" width="50" height="50">
+            </a>
+            <a href="https://api.whatsapp.com/send?phone=6287769171912&text=Haii%20frenTea%2C%20%0ASaya%20mau%20order%20"
+                target="_blank">
+                <img src="whatsapp-logo-png-2277.png" alt="WhatsApp Logo" width="50" height="50">
+            </a>
+            <a href="https://www.estehsolo.com/" target="_blank">
+                <img src="Solutions-website-logo-png.png" alt="Teh Solo Website Logo" width="50" height="50">
+            </a>
+        </div>
+    </footer>
+
+    <script>
+        const orderedItems = {};
+
+        function addToOrder(itemId) {
+            if (orderedItems[itemId]) {
+                orderedItems[itemId]++;
+            } else {
+                orderedItems[itemId] = 1;
+            }
+
+            const orderList = document.getElementById('orderList');
+            const itemElement = document.getElementById(itemId);
+            const itemName = itemElement.textContent.split(' - ')[0];
+            const itemQuantity = orderedItems[itemId];
+
+            const existingItem = orderList.querySelector(`li[data-item="${itemId}"]`);
+            if (existingItem) {
+                existingItem.textContent = `${itemName} - Rp ${itemElement.textContent.split(' - ')[1]} (x${itemQuantity})`;
+            } else {
+                const li = document.createElement('li');
+                li.textContent = `${itemName} - Rp ${itemElement.textContent.split(' - ')[1]} (x${itemQuantity})`;
+                li.setAttribute('data-item', itemId);
+                orderList.appendChild(li);
+            }
+
+            updateTotal();
+        }
+
+        function updateTotal() {
+            const item1Price = 4000; // Harga Teh Jeruk
+            const item2Price = 6000;
+            const item3Price = 8000;
+            const item4Price = 7000;
+            const item5Price = 9000;
+            const item6Price = 10000;
+            const item7Price = 9000;
+            const item8Price = 12000;
+            const item9Price = 7000;
+            const item10Price = 8000;
+            const item11Price = 8000; // Harga Teh Tarik
+            // Tambahkan harga item lainnya jika ada
+
+            let total = 0;
+            for (const itemId in orderedItems) {
+                if (itemId === 'item1') {
+                    total += item1Price * orderedItems[itemId];
+                } else if (itemId === 'item2') {
+                    total += item2Price * orderedItems[itemId];
+                } else if (itemId === 'item3') {
+                    total += item3Price * orderedItems[itemId];
+                } else if (itemId === 'item4') {
+                    total += item4Price * orderedItems[itemId];
+                } else if (itemId === 'item5') {
+                    total += item5Price * orderedItems[itemId];
+                } else if (itemId === 'item6') {
+                    total += item6Price * orderedItems[itemId];
+                } else if (itemId === 'item7') {
+                    total += item7Price * orderedItems[itemId];
+                } else if (itemId === 'item8') {
+                    total += item8Price * orderedItems[itemId];
+                } else if (itemId === 'item9') {
+                    total += item9Price * orderedItems[itemId];
+                } else if (itemId === 'item10') {
+                    total += item10Price * orderedItems[itemId];
+                } else if (itemId === 'item11') {
+                    total += item11Price * orderedItems[itemId];
+                }
+                // Tambahkan harga item lainnya jika ada
+            }
+
+
+
+            const totalElement = document.getElementById('total');
+            totalElement.textContent = total;
+        }
+
+        function clearOrder() {
+            orderedItems = {};
+            const orderList = document.getElementById('orderList');
+            orderList.innerHTML = '';
+            updateTotal();
+        }
+        function processPayment() {
+            // Add logic to process payment
+            alert('Pembayaran berhasil!');
+            // You may want to reset the orderedItems and clear the orderList after successful payment
+            clearOrder();
+        }
+
+        function cancelOrder() {
+            const orderList = document.getElementById('orderList');
+            alert('Pesanan berhasil dibatalkan.');
+            orderList.innerHTML = ''; // Menghapus semua elemen dalam ringkasan pemesanan
+            clearOrder();
+            alert('Pesanan berhasil dibatalkan.');
+        }
+
+
+
+        // ... Kode lainnya (processPayment()) ...
+
+
+    </script>
+</body>
+
+</html>
